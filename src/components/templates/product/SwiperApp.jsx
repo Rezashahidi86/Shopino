@@ -8,8 +8,6 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 
 const IMAGE_BASE_URL = "https://shopino.iran.liara.run/images/";
-const PLACEHOLDER = "/assets/static/product-placeholder.png";
-
 const ProductImageSwiper = ({ images = [] }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
 
@@ -17,7 +15,7 @@ const ProductImageSwiper = ({ images = [] }) => {
     ? images.map((image) =>
         image.startsWith("http") ? image : `${IMAGE_BASE_URL}${image}`,
       )
-    : [PLACEHOLDER];
+    : [`${import.meta.env.BASE_URL}assets/static/product-placeholder.png`];
 
   return (
     <div dir="ltr" className="w-full min-w-0">
@@ -43,7 +41,7 @@ const ProductImageSwiper = ({ images = [] }) => {
             <img
               src={image}
               alt={`تصویر محصول ${index + 1}`}
-              className="h-full w-full object-contain p-2 sm:p-4"
+              className="h-full w-full object-cover p-2 sm:p-4"
             />
           </SwiperSlide>
         ))}

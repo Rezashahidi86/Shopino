@@ -1,4 +1,4 @@
-import { createBrowserRouter} from "react-router";
+import { createBrowserRouter } from "react-router";
 import AppLayout from "../layouts/AppLayout";
 import Auth from "../page/Auth";
 import { getMe } from "../services/auth/auth.service";
@@ -8,6 +8,7 @@ import AboutUs from "../page/AboutUs";
 import Category from "../page/Category";
 import Product from "../page/product";
 import Cart from "../page/Cart";
+import NotFound from "../page/NotFound";
 
 const routes = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const routes = createBrowserRouter([
         Component: Category,
       },
       {
+        path: "/products",
+        Component: Category,
+      },
+      {
         path: "/product/:idProduct",
         Component: Product,
       },
@@ -41,12 +46,18 @@ const routes = createBrowserRouter([
         path: "/cart",
         Component: Cart,
       },
+      {
+        path: "/*",
+        Component: NotFound,
+      },
     ],
   },
   {
     path: "/login",
     Component: Auth,
   },
-]);
+],{
+  basename:"Shopino"
+});
 
 export default routes;

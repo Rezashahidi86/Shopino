@@ -11,8 +11,7 @@ const ProductCard = ({ product }) => {
             const image =
               product.images?.length > 0
                 ? product.images[0]
-                : "../../../../public/assets/static/product-placeholder.png";
-
+                :`${import.meta.env.BASE_URL}assets/static/product-placeholder.png`;
             return (
                 <Link
                   to={`/product/${product._id}`}

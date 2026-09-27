@@ -23,7 +23,7 @@ api.interceptors.response.use(
 
     switch (error.response?.status) {
       case 400:{
-        toast.error("اطلاعات وارد شده نادرست است")
+        toast.error("امکان این عملیات وجود ندارد")
       }
       case 401:
         break;

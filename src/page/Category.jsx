@@ -5,8 +5,10 @@ import AsideFilterMobile from "../components/templates/category/AsideFilterMobil
 import AsideFilterDesktop from "../components/templates/category/AsideFilterDesktop";
 import useCategory from "../lib/Hooks/useCategory";
 import { useState } from "react";
+import { useParams } from "react-router";
 
 const Category = () => {
+  const { idCategory } = useParams();
   const [mobileFilterOpen, setMobileFilterOpen] = useState(false);
   const [
     category,
@@ -26,13 +28,14 @@ const Category = () => {
   return (
     <main dir="rtl" className="min-h-screen bg-slate-50 py-8 dark:bg-[#0f172a]">
       <div className="mx-auto max-w-[1100px] px-4 sm:px-6">
-        {category ? (
-          <CategoryHeader category={category} />
-        ) : (
-          <div className="mx-auto mt-8 w-full max-w-7xl px-4">
-            <div className="h-[280px] animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />
-          </div>
-        )}
+        {idCategory &&
+          (category ? (
+            <CategoryHeader category={category} />
+          ) : (
+            <div className="mx-auto mt-8 w-full max-w-7xl px-4">
+              <div className="h-[280px] animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />
+            </div>
+          ))}
 
         <div className="mt-6 flex items-center justify-between lg:hidden">
           <button
@@ -45,20 +48,25 @@ const Category = () => {
           </button>
         </div>
 
-        <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[250px_1fr]">
-          {category ? (
-            <AsideFilterDesktop
-              price={price}
-              setPrice={setPrice}
-              category={category}
-              filtersProduct={filtersProduct}
-              dispatch={dispatch}
-            ></AsideFilterDesktop>
-          ) : (
-            <div className="mx-auto mt-8 w-full max-w-7xl px-4">
-              <div className="h-[280px] animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />
-            </div>
-          )}
+        <div
+          className={
+            category && "mt-6 grid grid-cols-1 gap-6 lg:grid-cols-[250px_1fr]"
+          }
+        >
+          {idCategory &&
+            (category ? (
+              <AsideFilterDesktop
+                price={price}
+                setPrice={setPrice}
+                category={category}
+                filtersProduct={filtersProduct}
+                dispatch={dispatch}
+              ></AsideFilterDesktop>
+            ) : (
+              <div className="mx-auto mt-8 w-full max-w-7xl px-4">
+                <div className="h-[280px] animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />
+              </div>
+            ))}
 
           <section>
             <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-700/70 dark:bg-[#18233a]">
@@ -119,7 +127,9 @@ const Category = () => {
             </div>
 
             {products ? (
-              <div className="mt-5 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4 xl:grid-cols-3">
+              <div
+                className={`mt-5 grid grid-cols-2 gap-3 sm:grid-cols-2 sm:gap-4  ${category ? "xl:grid-cols-3" : "xl:grid-cols-4"}`}
+              >
                 {searchProducts
                   ? searchProducts?.map((product) => (
                       <ProductCard key={product._id} product={product} />
@@ -164,23 +174,24 @@ const Category = () => {
         </div>
       </div>
 
-      {category ? (
-        <AsideFilterMobile
-          setMobileFilterOpen={setMobileFilterOpen}
-          price={price}
-          setPrice={setPrice}
-          dispatch={dispatch}
-          category={category}
-          filtersProduct={filtersProduct}
-          mobileFilterOpen={mobileFilterOpen}
-        ></AsideFilterMobile>
-      ) : (
-        <div
-          className={`${mobileFilterOpen ? "visible" : "invisible"} mx-auto mt-8 w-full max-w-7xl px-4`}
-        >
-          <div className="h-[280px] animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />
-        </div>
-      )}
+      {idCategory &&
+        (category ? (
+          <AsideFilterMobile
+            setMobileFilterOpen={setMobileFilterOpen}
+            price={price}
+            setPrice={setPrice}
+            dispatch={dispatch}
+            category={category}
+            filtersProduct={filtersProduct}
+            mobileFilterOpen={mobileFilterOpen}
+          ></AsideFilterMobile>
+        ) : (
+          <div
+            className={`${mobileFilterOpen ? "visible" : "invisible"} mx-auto mt-8 w-full max-w-7xl px-4`}
+          >
+            <div className="h-[280px] animate-pulse rounded-2xl bg-slate-200 dark:bg-slate-800" />
+          </div>
+        ))}
     </main>
   );
 };

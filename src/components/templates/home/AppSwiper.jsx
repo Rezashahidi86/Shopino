@@ -24,7 +24,7 @@ function AppSwiper() {
           <SwiperSlide>
             <div className="relative h-[420px] overflow-hidden">
               <img
-                src="../../../public/assets/static/-2147483648_-215831.jpg"
+                src={`${import.meta.env.BASE_URL}assets/static/-2147483648_-215831.jpg`}
                 className="absolute inset-0 h-full w-full object-cover"
               />
 
@@ -34,7 +34,7 @@ function AppSwiper() {
           <SwiperSlide>
             <div className="relative h-[420px] overflow-hidden">
               <img
-                src="../../../public/assets/static/-2147483648_-215834.jpg"
+                src={`${import.meta.env.BASE_URL}assets/static/-2147483648_-215834.jpg`}
                 className="absolute inset-0 h-full w-full object-cover"
               />
 
@@ -44,7 +44,7 @@ function AppSwiper() {
           <SwiperSlide>
             <div className="relative h-[420px] overflow-hidden">
               <img
-                src="../../../public/assets/static/-2147483648_-215838.jpg"
+                src={`${import.meta.env.BASE_URL}assets/static/product-placeholder.png`}
                 className="absolute inset-0 h-full w-full object-cover"
               />
 
