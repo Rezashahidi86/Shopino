@@ -33,6 +33,7 @@ api.interceptors.response.use(
         break;
 
       case 500:
+        console.log(error);
         toast.error("خطایی در سرور رخ داده است");
         break;
 

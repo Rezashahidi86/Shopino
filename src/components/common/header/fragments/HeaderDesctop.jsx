@@ -12,6 +12,7 @@ import {
 import CategoryMegaMenu from "./components/CategoryMegaMenu";
 function HeaderDesctop({ isOpen, setIsOpen, categories }) {
   const infoUser = useLoaderData();
+  const isAdmin = infoUser?.roles.join("").includes("ADMIN");
   return (
     <div className="flex h-16 items-center justify-between px-3 sm:px-6">
       <nav className="hidden items-center lg:flex">
@@ -56,7 +57,7 @@ function HeaderDesctop({ isOpen, setIsOpen, categories }) {
         {infoUser ? (
           <p className="cursor-pointer hidden h-10 items-center gap-2 rounded-xl bg-violet-600 px-4 text-sm font-semibold text-white transition-all hover:bg-violet-700 lg:flex">
             <FiUser className="text-lg" />
-            <span>خوشامدید</span>
+            {isAdmin ? <Link to={"/admin"}>پنل مدیریت</Link> : <span>خوشامدید</span>}
           </p>
         ) : (
           <Link

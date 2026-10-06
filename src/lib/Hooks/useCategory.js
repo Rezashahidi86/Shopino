@@ -2,12 +2,14 @@ import { useEffect, useReducer, useState } from "react";
 import { useLocation, useParams, useSearchParams } from "react-router";
 import getAllCategories from "../../services/category/category.service";
 import { getProductsService } from "../../services/product/product.service";
+import usePagination from "./usePagination";
 const useCategory = () => {
+  const [currentPage, pagination, setPagination, showNumberPage] =
+    usePagination();
   const [price, setPrice] = useState({
     min: "",
     max: "",
-  });
-  const [countPagination, setCountPagination] = useState(0);
+  }); 
   const [category, setCategory] = useState(null);
   const [products, setProducts] = useState(null);
   const [searchProducts, setSearchProducts] = useState(null);
@@ -33,7 +35,7 @@ const useCategory = () => {
         if (action.Maxprice != "") {
           newFiltersProducts["maxPrice"] = Number(action.Maxprice);
         } else {
-          delete newFiltersProducts.maxPrice
+          delete newFiltersProducts.maxPrice;
         }
 
         break;
@@ -49,7 +51,7 @@ const useCategory = () => {
         if (action.Minprice != "") {
           newFiltersProducts["minPrice"] = Number(action.Minprice);
         } else {
-          delete newFiltersProducts.minPrice
+          delete newFiltersProducts.minPrice;
         }
 
         break;
@@ -215,7 +217,7 @@ const useCategory = () => {
 
       if (controller.signal.aborted) return;
 
-      setCountPagination(response.data.data.pagination.page);
+      setPagination(response.data.data.pagination);
       setProducts(response.data.data.products);
     };
 
@@ -231,15 +233,16 @@ const useCategory = () => {
     search,
     products,
     filtersProduct,
-    countPagination,
     searchProducts,
-    searchParams,
     price,
     setPrice,
     dispatch,
     setSearch,
     setSelectFilter,
     showSearchProducts,
+    currentPage,
+    pagination,
+    showNumberPage,
   ];
 };
 

@@ -6,6 +6,8 @@ import AsideFilterDesktop from "../components/templates/category/AsideFilterDesk
 import useCategory from "../lib/Hooks/useCategory";
 import { useState } from "react";
 import { useParams } from "react-router";
+import Pagination from "../components/common/pagination/Pagination";
+import usePagination from "../lib/Hooks/usePagination";
 
 const Category = () => {
   const { idCategory } = useParams();
@@ -15,15 +17,16 @@ const Category = () => {
     search,
     products,
     filtersProduct,
-    countPagination,
     searchProducts,
-    searchParams,
     price,
     setPrice,
     dispatch,
     setSearch,
     setSelectFilter,
     showSearchProducts,
+    currentPage,
+    pagination,
+    showNumberPage,
   ] = useCategory();
   return (
     <main dir="rtl" className="min-h-screen bg-slate-50 py-8 dark:bg-[#0f172a]">
@@ -152,23 +155,11 @@ const Category = () => {
             )}
 
             <div className="mt-8 flex items-center justify-center gap-2">
-              {countPagination &&
-                Array.from({ length: countPagination }).map((_, index) => (
-                  <button
-                    disabled={
-                      searchParams.get("page") == index + 1 ? true : false
-                    }
-                    key={index}
-                    type="button"
-                    className={
-                      searchParams.get("page") == index + 1
-                        ? "flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-500 transition dark:border-slate-700 dark:bg-[#18233a] dark:text-slate-300"
-                        : "flex h-10 w-10 cursor-pointer items-center justify-center rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-500 transition hover:border-violet-300 hover:text-violet-600 dark:border-slate-700 dark:bg-[#18233a] dark:text-slate-300"
-                    }
-                  >
-                    {index + 1}
-                  </button>
-                ))}
+              <Pagination
+                pagination={pagination}
+                currentPage={currentPage}
+                showNumberPage={showNumberPage}
+              ></Pagination>
             </div>
           </section>
         </div>
