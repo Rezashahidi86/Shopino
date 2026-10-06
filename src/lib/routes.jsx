@@ -1,3 +1,4 @@
+import { createBrowserRouter, RouterProvider } from "react-router";
 const routes = createBrowserRouter(
   [
     {
@@ -73,7 +74,7 @@ const routes = createBrowserRouter(
   ],
   {
     basename: "/Shopino/",
-  }
+  },
 );
 
 export default routes;
