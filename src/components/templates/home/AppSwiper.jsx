@@ -44,7 +44,7 @@ function AppSwiper() {
           <SwiperSlide>
             <div className="relative h-[420px] overflow-hidden">
               <img
-                src={`${import.meta.env.BASE_URL}assets/static/product-placeholder.png`}
+                src={`${import.meta.env.BASE_URL}assets/static/-2147483648_-215838.jpg`}
                 className="absolute inset-0 h-full w-full object-cover"
               />
 
