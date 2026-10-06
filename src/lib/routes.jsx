@@ -1,4 +1,19 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
+import Home from "../page/Home";
+import AppLayout from "../layouts/AppLayout";
+import Communication from "../page/Communication";
+import AboutUs from "../page/AboutUs";
+import Category from "../page/Category";
+import Product from "../page/product";
+import Cart from "../page/Cart";
+import NotFound from "../page/NotFound";
+import Auth from "../page/Auth";
+import AdminLayout from "../layouts/AdminLayout";
+import AdminUsers from "../page/admin/AdminUsers";
+import CategoryAndSubCategory from "../page/admin/CategoryAndSubCategory";
+import AdminDashboard from "../components/templates/admin/dashboard/Dashboard";
+import AdminProducts from "../page/admin/AdminProducts";
+
 const routes = createBrowserRouter(
   [
     {
