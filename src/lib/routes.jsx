@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from "react-router";
+import { createBrowserRouter, redirect, RouterProvider } from "react-router";
 import Home from "../page/Home";
 import AppLayout from "../layouts/AppLayout";
 import Communication from "../page/Communication";
@@ -69,10 +69,10 @@ const routes = createBrowserRouter(
       Component: AdminLayout,
       loader: async () => {
         try {
-          const { data } = await getMe();
+          const { infoUser } = await getMe();
 
-          if (data.data.user.roles.join("").includes("ADMIN")) {
-            return data.data.user;
+          if (infoUser.roles.join("").includes("ADMIN")) {
+            return infoUser;
           }
 
           return redirect("/");

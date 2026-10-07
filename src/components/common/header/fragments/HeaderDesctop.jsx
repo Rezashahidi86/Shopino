@@ -14,7 +14,6 @@ import { useContext } from "react";
 import { AuthContext } from "../../../../context/AuthProvider";
 function HeaderDesctop({ isOpen, setIsOpen, categories }) {
   const {infoUser} = useContext(AuthContext);
-  console.log(infoUser);
   const isAdmin = infoUser?.roles.join("").includes("ADMIN");
   return (
     <div className="flex h-16 items-center justify-between px-3 sm:px-6">
