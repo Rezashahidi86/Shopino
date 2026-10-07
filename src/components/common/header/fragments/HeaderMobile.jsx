@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { FiUser, FiPhone, FiMessageCircle } from "react-icons/fi";
 import MobileCategoryItem from "./components/MobileCategoryItem";
 import { useContext } from "react";
+import { AuthContext } from "../../../../context/AuthProvider";
 function HeaderMobile({ isOpen, setIsOpen, categories }) {
   const { infoUser } = useContext(AuthContext);
   const isAdmin = infoUser?.roles.join("").includes("ADMIN");
