@@ -13,6 +13,7 @@ import AdminUsers from "../page/admin/AdminUsers";
 import CategoryAndSubCategory from "../page/admin/CategoryAndSubCategory";
 import AdminDashboard from "../components/templates/admin/dashboard/Dashboard";
 import AdminProducts from "../page/admin/AdminProducts";
+import { getMe } from "../services/auth/auth.service";
 
 const routes = createBrowserRouter(
   [
@@ -69,9 +70,8 @@ const routes = createBrowserRouter(
       Component: AdminLayout,
       loader: async () => {
         try {
-          const { infoUser } = await getMe();
-
-          if (infoUser.roles.join("").includes("ADMIN")) {
+          const infoUser = await getMe();
+          if (infoUser.data.data.user.roles.join("").includes("ADMIN")) {
             return infoUser;
           }
 
