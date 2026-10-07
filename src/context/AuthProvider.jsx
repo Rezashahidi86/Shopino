@@ -17,7 +17,7 @@ const AuthProvider = ({ children }) => {
 
       const infoUser = await getMe();
 
-      setInfoUser(infoUser);
+      setInfoUser(infoUser.data.data.user);
     } catch (error) {
       console.log("getInfoUser", error);
     } finally {
@@ -33,7 +33,7 @@ const AuthProvider = ({ children }) => {
     try {
       setIsLoading(true);
 
-      await toast.promise(logOutServic(), {
+      toast.promise(logOutServic(), {
         loading: "در حال انجام عملیات",
         success: () => {
           setInfoUser(null);
@@ -61,11 +61,7 @@ const AuthProvider = ({ children }) => {
     refreshUser,
   };
 
-  return (
-    <AuthContext.Provider value={value}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
 export { AuthContext, AuthProvider };

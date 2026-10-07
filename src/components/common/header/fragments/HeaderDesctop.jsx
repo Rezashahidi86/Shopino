@@ -10,8 +10,11 @@ import {
   FiShoppingBag,
 } from "react-icons/fi";
 import CategoryMegaMenu from "./components/CategoryMegaMenu";
+import { useContext } from "react";
+import { AuthContext } from "../../../../context/AuthProvider";
 function HeaderDesctop({ isOpen, setIsOpen, categories }) {
-  const infoUser = useLoaderData();
+  const {infoUser} = useContext(AuthContext);
+  console.log(infoUser);
   const isAdmin = infoUser?.roles.join("").includes("ADMIN");
   return (
     <div className="flex h-16 items-center justify-between px-3 sm:px-6">
@@ -57,7 +60,11 @@ function HeaderDesctop({ isOpen, setIsOpen, categories }) {
         {infoUser ? (
           <p className="cursor-pointer hidden h-10 items-center gap-2 rounded-xl bg-violet-600 px-4 text-sm font-semibold text-white transition-all hover:bg-violet-700 lg:flex">
             <FiUser className="text-lg" />
-            {isAdmin ? <Link to={"/admin"}>پنل مدیریت</Link> : <span>خوشامدید</span>}
+            {isAdmin ? (
+              <Link to={"/admin"}>پنل مدیریت</Link>
+            ) : (
+              <span>خوشامدید</span>
+            )}
           </p>
         ) : (
           <Link

@@ -22,6 +22,7 @@ const routes = createBrowserRouter(
       loader: async () => {
         try {
           const { data } = await getMe();
+          console.log(data);
           return data.data.user;
         } catch (error) {
           return null;

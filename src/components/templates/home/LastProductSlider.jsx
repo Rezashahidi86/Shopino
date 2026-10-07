@@ -90,7 +90,7 @@ const LastProductSlider = () => {
                 >
                   <div className="relative h-52 overflow-hidden bg-slate-100 dark:bg-slate-800">
                     <img
-                      src={image}
+                      src={`https://shopino.iran.liara.run/images/${image}`}
                       alt={product.name}
                       className="h-full w-full object-cover"
                     />
