@@ -13,7 +13,7 @@ import CategoryMegaMenu from "./components/CategoryMegaMenu";
 import { useContext } from "react";
 import { AuthContext } from "../../../../context/AuthProvider";
 function HeaderDesctop({ isOpen, setIsOpen, categories }) {
-  const {infoUser} = useContext(AuthContext);
+  const { infoUser } = useContext(AuthContext);
   const isAdmin = infoUser?.roles.join("").includes("ADMIN");
   return (
     <div className="flex h-16 items-center justify-between px-3 sm:px-6">
@@ -62,7 +62,7 @@ function HeaderDesctop({ isOpen, setIsOpen, categories }) {
             {isAdmin ? (
               <Link to={"/admin"}>پنل مدیریت</Link>
             ) : (
-              <span>خوشامدید</span>
+              <Link to={"/login"}>خوشامدید</Link>
             )}
           </p>
         ) : (
