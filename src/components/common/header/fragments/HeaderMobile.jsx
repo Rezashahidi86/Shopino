@@ -3,7 +3,7 @@ import { FiUser, FiPhone, FiMessageCircle } from "react-icons/fi";
 import MobileCategoryItem from "./components/MobileCategoryItem";
 import { useContext } from "react";
 function HeaderMobile({ isOpen, setIsOpen, categories }) {
-  const {infoUser} = useContext(AuthContext);
+  const { infoUser } = useContext(AuthContext);
   const isAdmin = infoUser?.roles.join("").includes("ADMIN");
   return (
     <div
@@ -40,9 +40,9 @@ function HeaderMobile({ isOpen, setIsOpen, categories }) {
             {isAdmin ? (
               <Link to={"/admin"}>پنل مدیریت</Link>
             ) : (
-              <span>خوشامدید</span>
+              <Link to={"/login"}>خوشامدید</Link>
             )}
-          </p>  
+          </p>
         ) : (
           <Link
             to="/login"
